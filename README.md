@@ -29,12 +29,12 @@ To avoid relying on anecdotal feedback, I built an automated extraction and clas
 ## 📊 Findings & Competitor Benchmark
 
 ### 1. Zomato's Primary Drivers of Negative Sentiment
-![Zomato Issue Breakdown](image_541f5e.png)
+![Zomato Issue Breakdown](images/zomato_issues.png)
 
 > **Key Insight:** Vague complaints aside, "Refund / Support Friction" is the single largest specific driver of negative sentiment (~20.5%), followed closely by "Order Accuracy" (~9.8%). Users are highly frustrated by being trapped in bot loops or offered small coupons when restaurants forget items.
 
 ### 2. Industry Benchmark: Zomato vs. Swiggy
-![Competitor Benchmark](image_541f39.png)
+![Competitor Benchmark](images/competitor_benchmark.png)
 
 > **Key Insight:** Benchmarking against Swiggy reveals this is an industry-wide structural defect, not an isolated Zomato bug. Swiggy actually sees higher relative friction in these categories (36% combined). This presents a massive strategic opportunity for Zomato to capture market share by solving the refund trust gap before its primary competitor does.
 
