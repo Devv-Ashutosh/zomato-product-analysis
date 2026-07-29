@@ -1,67 +1,105 @@
-# Zomato Order Accuracy & Refund Trust Gap: A Data-Driven Case Study
+# Product Analytics Case Study: Identifying Trust Gaps in Food Delivery Apps
 
-## 📌 Executive Summary
-
-*   **The Pivot:** I initially hypothesized that a Dietary Preference Filter would drive user value (based on an exploratory sample of N=60). However, expanding the dataset to 500+ recent reviews across competitors revealed a much deeper operational bottleneck.
-*   **The Core Problem:** Automated thematic coding of 1-3 star reviews showed that **Refund/Support Friction and Order Accuracy defects account for over 30% of actionable negative sentiment** across both Zomato and Swiggy.
-*   **The Recommendation:** I shifted the project priority from discovery features to operational trust. I am proposing an automated, photo-verified refund flow to bypass restaurant arbitration delays, projecting a significant rescue of churned Daily Active Users (DAU).
+A product analytics case study that analyzes user reviews from Zomato and Swiggy to identify the largest drivers of negative user experience and propose data-backed product improvements.
 
 ---
 
-## 🔄 Research Evolution & Hypothesis Testing
+## Overview
 
-*   **Phase 1 (Exploratory Sample, N=60):** Early review mining highlighted user interest in enhanced discovery features, leading to an initial RICE prioritization of a Dietary Preference Filter.
-*   **Phase 2 (Expanded Quantitative Dataset, N=500+):** Expanding the dataset and applying automated thematic coding revealed that operational defects—specifically Order Accuracy and Refund Friction—were far more critical drivers of churn.
-*   **Outcome:** The RICE matrix was updated to reflect the expanded dataset, pivoting the primary feature candidate toward solving operational trust and revenue retention.
+Product decisions should be driven by user feedback rather than assumptions. In this project, I collected and analyzed 1,000 recent Google Play reviews (500 each from Zomato and Swiggy) to understand the primary reasons behind poor user experiences.
 
----
-
-## 🛠️ Data Pipeline & Methodology
-
-To avoid relying on anecdotal feedback, I built an automated extraction and classification pipeline:
-
-*   **Data Extraction:** Scraped the latest 500 reviews for both Zomato and Swiggy using Python and the `google-play-scraper` library.
-*   **Data Transformation:** To process the qualitative data efficiently and at scale, I defined strict issue categories and used an LLM-assisted Python script to perform automated thematic coding across the unstructured text.
-*   **Analysis:** Filtered for 1-3 star reviews to quantify the exact drivers of negative sentiment and normalized the data to ensure a fair competitor comparison.
+Using Python, I built an automated pipeline to scrape reviews, classify issues using rule-based keyword matching, visualize trends, and compare both platforms. The analysis showed that refund friction and order accuracy are among the most common causes of negative sentiment, leading to a product recommendation focused on improving user trust.
 
 ---
 
-## 📊 Findings & Competitor Benchmark
+## Objectives
 
-### 1. Zomato's Primary Drivers of Negative Sentiment
-![Zomato Issue Breakdown](images/zomato_issues.png)
+- Collect large-scale user feedback from Google Play.
+- Identify the major causes of negative reviews.
+- Benchmark Zomato against Swiggy.
+- Prioritize product improvements using the RICE framework.
+- Estimate the potential business impact of the proposed solution.
 
-> **Key Insight:** Vague complaints aside, "Refund / Support Friction" is the single largest specific driver of negative sentiment (~20.5%), followed closely by "Order Accuracy" (~9.8%). Users are highly frustrated by being trapped in bot loops or offered small coupons when restaurants forget items.
+---
 
-### 2. Industry Benchmark: Zomato vs. Swiggy
+## Tech Stack
+
+- Python
+- Pandas
+- Matplotlib
+- Jupyter Notebook
+- google-play-scraper
+
+---
+
+## Dataset
+
+- **Source:** Google Play Reviews
+- **Platforms:** Zomato & Swiggy
+- **Total Reviews:** 1,000
+  - 500 Zomato
+  - 500 Swiggy
+- **Analysis Focus:** 1–3 star reviews
+
+---
+
+## Methodology
+
+1. Scraped reviews using `google-play-scraper`.
+2. Cleaned and processed the review text.
+3. Classified reviews into predefined issue categories using rule-based keyword matching.
+4. Calculated issue frequencies for each platform.
+5. Compared Zomato with Swiggy.
+6. Prioritized potential product solutions using the RICE framework.
+
+---
+
+## Key Findings
+
+- Refund and customer support issues were among the most frequent drivers of negative reviews.
+- Order accuracy (missing or incorrect items) was another major source of dissatisfaction.
+- Similar patterns were observed across both Zomato and Swiggy, suggesting an industry-wide operational challenge rather than a platform-specific issue.
+### Issue Distribution
+![Issue Breakdown](images/zomato_issues.png)
+
+### Competitor Comparison
 ![Competitor Benchmark](images/competitor_benchmark.png)
 
-> **Key Insight:** Benchmarking against Swiggy reveals this is an industry-wide structural defect, not an isolated Zomato bug. Swiggy actually sees higher relative friction in these categories (36% combined). This presents a massive strategic opportunity for Zomato to capture market share by solving the refund trust gap before its primary competitor does.
+---
+
+## Product Recommendation
+
+Based on the findings, I proposed an **Auto-Refund Proof** feature that enables users to submit photo evidence for missing or incorrect items, allowing eligible cases to be resolved faster while reducing support friction.
+
+Among the evaluated feature ideas, this solution received the highest RICE score because of its potential user impact relative to implementation effort.
 
 ---
 
-## 💡 Feature Prioritization (RICE Framework)
+## Business Impact
 
-Based on the expanded data, I evaluated engineering solutions to solve this structural bottleneck and compared them against the initial discovery feature hypothesis.
+A simple business impact model was created using public assumptions to estimate the potential effect of reducing refund-related friction.
 
-| Feature Candidate | Reach (1-10) | Impact (1-3) | Confidence (%) | Effort (Weeks) | **RICE Score** |
-| :--- | :--- | :--- | :--- | :--- | :--- |
-| **A: Auto-Refund Proof (Order Accuracy)** | 8 | 3 | 90% | 4 | **5.4** |
-| **B: Priority Escalation Path** | 3 | 2 | 70% | 2 | **2.1** |
-| **C: Dietary Preference Filter** *(Initial V1 Hypothesis)* | 4 | 1 | 60% | 3 | **0.8** |
-
-**Recommendation:** Proceed with Feature A. While the engineering effort is higher, the direct impact on preventing hard user churn makes it the clear mathematical priority.
+The estimates are illustrative and intended to demonstrate product thinking rather than represent actual internal company metrics.
 
 ---
 
-## 📈 Business Impact Estimate
+## Repository Structure
 
-To quantify the Return on Investment (ROI) of building the Auto-Refund Proof feature, I modeled the estimated retention impact:
-
-*   **Baseline Assumption:** Zomato processes orders for ~10M Monthly Active Users (MAU).
-*   **Defect Rate:** Assuming 2% of user orders experience an accuracy or missing item defect (200,000 users affected/month).
-*   **Churn Risk:** Industry data suggests ~20% of users who experience an unresolved refund dispute stop using the platform entirely (40,000 users at risk of churning per month).
-*   **Impact Delta:** If the automated feature resolves even 50% of these disputes instantly, Zomato successfully retains **20,000 active users per month** who would have otherwise churned to a competitor.
+```
+├── data/
+├── images/
+├── notebook.ipynb
+├── requirements.txt
+└── README.md
+```
 
 ---
-*Prepared by Ashutosh*
+
+## Project Highlights
+
+- Scraped and analyzed 1,000 Google Play reviews.
+- Built an automated data pipeline using Python.
+- Performed rule-based text classification on unstructured reviews.
+- Benchmarked two competing food delivery platforms.
+- Used data to support a product recommendation instead of relying on intuition.
+
